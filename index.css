@@ -8,12 +8,12 @@
   /* colors */
 
   /* font-sizes */
-  --fs-900: 9.375rem;
-  --fs-800: 6.25rem;
-  --fs-700: 3.5rem;
-  --fs-600: 2rem;
+  --fs-900: clamp(5rem, 10vw + 1rem, 9.375rem);
+  --fs-800: 3.5rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1rem;
   --fs-500: 1.75rem;
-  --fs-400: 1.125rem;
+  --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
   /* font-sizes */
@@ -23,6 +23,24 @@
   --ff-sans-cond: 'Barlow Condensed', sans-serif;
   --ff-sans-normal: 'Barlow', sans-serif;
   /* font-families */
+}
+
+@media (min-width: 35em) {
+  :root {
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-400: 1rem;
+  }
+}
+
+@media (min-width: 45em) {
+  :root {
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-400: 1.125rem;
+  }
 }
 
 /* custom properties */
@@ -69,6 +87,9 @@ body {
   background-color: hsl(var(--clr-dark));
   line-height: 1.5;
   min-height: 100vh;
+
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
 
 /* make image easier to work with */
@@ -112,9 +133,17 @@ select {
   gap: var(--gap, 1rem);
 }
 
+.flex.even-columns > * {
+  width: 100%;
+}
+
 .grid {
   display: grid;
   gap: var(--gap, 1rem);
+}
+
+.d-block {
+  display: block;
 }
 
 /* 
@@ -148,6 +177,73 @@ select {
   margin-inline: auto;
   max-width: 80rem;
 }
+
+.grid-container {
+  display: grid;
+  text-align: center;
+
+  /* short for justify-items and align-items */
+  place-items: center;
+
+  padding-inline: 1rem;
+  /* place-content: center;
+  row-gap: 50%; */
+  /* column-gap: var(--container-gap, 2rem); */
+
+  /* middle area is shrinking and growing */
+  /* 4 columns */
+  /* grid-template-columns: 2em minmax(0, 40rem) minmax(0, 40rem) 2em; */
+  /* grid-template-columns: 2em repeat(2, minmax(0, 40rem)) 2em; */
+  /* grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
+      2rem,
+      1fr
+    ); */
+}
+
+.grid-container * {
+  max-width: 50ch;
+}
+
+/* 45rem ~= 760px */
+@media (min-width: 45em) {
+  .grid-container {
+    text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
+        2rem,
+        1fr
+      );
+  }
+  .grid-container > *:first-child {
+    grid-column: 2;
+    /* outline: 1px solid red; */
+  }
+
+  .grid-container > *:last-child {
+    grid-column: 3;
+    /* outline: 1px solid yellow; */
+  }
+
+  .grid-container--home {
+    padding-bottom: 6rem;
+
+    /* takes which item is bigger */
+    /* padding-bottom: max(6rem, 10vh); */
+    align-items: end;
+  }
+}
+
+/* this goes FROM 1 the first column to the second */
+/* .grid-container > *:first-child { */
+/* grid-column: 2; */
+/* outline: 1px solid red; */
+/* } */
+
+/* this goes FROM the third column to the end or fourth */
+/* .grid-container > *:last-child { */
+/* grid-column: 3; */
+/* outline: 1px solid yellow; */
+/* } */
 
 /* visually hide content for sighted users, but announce it for people who use screen readers */
 .sr-only {
@@ -276,7 +372,8 @@ select {
   position: relative;
   text-decoration: none;
   padding: 0 2em;
-  display: grid;
+  /* display: grid; */
+  display: inline-grid;
 
   /* align-items and justify-items short-cut */
   place-items: center;
@@ -287,6 +384,8 @@ select {
   border-radius: 50%;
 
   z-index: 1;
+
+  font-size: 2rem;
 }
 
 .large-button::after {
@@ -378,3 +477,31 @@ select {
 }
 
 /* components */
+
+/* page specific background */
+
+body {
+  background-size: cover;
+  background-position: bottom center;
+}
+
+/* home */
+
+.home {
+  background-image: url(./assets/home/background-home-mobile.jpg);
+}
+
+@media (min-width: 35em) {
+  .home {
+    background-position: center center;
+    background-image: url(./assets/home/background-home-tablet.jpg);
+  }
+}
+
+@media (min-width: 45em) {
+  .home {
+    background-image: url(./assets/home/background-home-desktop.jpg);
+  }
+}
+
+/* page-specific background */
