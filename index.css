@@ -90,6 +90,8 @@ body {
 
   display: grid;
   grid-template-rows: min-content 1fr;
+
+  overflow-x: hidden;
 }
 
 /* make image easier to work with */
@@ -258,6 +260,21 @@ select {
   border: 0;
 }
 
+.skip-to-content {
+  position: absolute;
+  z-index: 9999;
+  background: hsl(var(--clr-white));
+  color: hsl(var(--clr-dark));
+  padding: 0.5em 1em;
+  margin-inline: auto;
+  transform: translateY(-100%);
+  transition: transform 250ms ease-in;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+}
+
 /* utility classes */
 
 /* colors */
@@ -409,12 +426,28 @@ select {
   transform: scale(1.5);
 }
 
+/* primary header */
+
+.logo {
+  /* can't get smaller than 1.5rem
+     grows at 5vw and can't get larger
+     than 3.5rem */
+  margin: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.primary-header {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .primary-navigation {
-  --gap: 8rem;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
   --underline-gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0;
+  background: hsl(var(--clr-dark) / 0.95);
+  backdrop-filter: blur(1.5rem);
 }
 
 .primary-navigation a {
@@ -424,6 +457,119 @@ select {
 .primary-navigation a > span {
   font-weight: 700;
   margin-right: 0.5em;
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+/* need css rule key value pair */
+@supports (backdrop-filter: blur(1.5rem)) {
+  .primary-navigation {
+    background: hsl(var(--clr-white) / 0.05);
+    backdrop-filter: blur(1.5rem);
+  }
+}
+
+@media (max-width: 35rem) {
+  .primary-navigation {
+    --underline-gap: 0.5em;
+    list-style: none;
+    padding: min(20rem, 15vh) 2rem;
+    margin: 0;
+    flex-direction: column;
+    position: fixed;
+    z-index: 1000;
+    inset: 0 0 0 30%;
+    transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
+  }
+
+  .primary-navigation[data-visible='true'] {
+    transform: translateX(0);
+  }
+
+  .primary-navigation.underline-indicators > .active {
+    border: 0;
+  }
+
+  .mobile-nav-toggle {
+    display: block;
+    position: absolute;
+    z-index: 2000;
+    right: 1rem;
+    top: 2rem;
+    background: transparent;
+    border: 0;
+    background-image: url(./assets/shared/icon-hamburger.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 1.5rem;
+    aspect-ratio: 1 / 1;
+  }
+
+  .mobile-nav-toggle[aria-expanded='true'] {
+    background-image: url(./assets/shared/icon-close.svg);
+  }
+
+  /* :focus-visible don't get box? */
+  .mobile-nav-toggle:focus-visible {
+    outline: 5px solid white;
+    outline-offset: 5px;
+  }
+}
+
+@media (min-width: 35em) {
+  .primary-navigation {
+    padding-inline: clamp(3rem, 7vw, 7rem);
+  }
+}
+
+@media (min-width: 35em) and (max-width: 44.999em) {
+  /* .primary-navigation {
+    padding-inline: 3rem;
+  } */
+
+  .primary-navigation a > span {
+    display: none;
+  }
+}
+
+@media (min-width: 45em) {
+  /* Didn't work so well apparently */
+  /* .primary-header {
+    position: relative;
+  }
+
+  .primary-header::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1px;
+    width: 20%;
+    left: 8rem;
+    background-color: red;
+    z-index: 10;
+  } */
+
+  .primary-header::after {
+    content: '';
+    display: block;
+    position: relative;
+    height: 1px;
+    width: 100%;
+    margin-right: -2.5rem;
+    background-color: hsl(var(--clr-white) / 0.25);
+    order: 1;
+  }
+
+  nav {
+    order: 2;
+  }
+
+  .primary-navigation {
+    margin-block: 2rem;
+  }
 }
 
 .underline-indicators > * {

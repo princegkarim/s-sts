@@ -23,46 +23,57 @@
       href="./assets/favicon-32x32.png"
     />
 
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
   </head>
   <body class="home">
+    <a class="skip-to-content" href="#main">Skip to main content</a>
     <header class="primary-header flex">
       <div>
         <img src="./assets/shared/logo.svg" alt="space logo" class="logo" />
       </div>
-      <!-- <ul class="primary-navigation underline-indicators flex">
-        <li class="active">
-          <a
-            href="index.html"
-            class="ff-sans-cond uppercase text-white letter-spacing-2"
-            ><span>00</span>Home</a
-          >
-        </li>
-        <li>
-          <a
-            href="destination.html"
-            class="ff-sans-cond uppercase text-white letter-spacing-2"
-            ><span>01</span>Destination</a
-          >
-        </li>
-        <li>
-          <a
-            href="crew.html"
-            class="ff-sans-cond uppercase text-white letter-spacing-2"
-            ><span>02</span>Crew</a
-          >
-        </li>
-        <li>
-          <a
-            href="technology.html"
-            class="ff-sans-cond uppercase text-white letter-spacing-2"
-            ><span>03</span>Technology</a
-          >
-        </li>
-      </ul> -->
+      <button class="mobile-nav-toggle" aria-controls="primary-navigation">
+        <span class="sr-only" aria-expanded="false">Menu</span>
+      </button>
+      <nav>
+        <ul
+          id="primary-navigation"
+          data-visible="false"
+          class="primary-navigation underline-indicators flex"
+        >
+          <li class="active">
+            <a
+              href="index.html"
+              class="ff-sans-cond uppercase text-white letter-spacing-2"
+              ><span aria-hidden="true">00</span>Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="destination.html"
+              class="ff-sans-cond uppercase text-white letter-spacing-2"
+              ><span aria-hidden="true">01</span>Destination</a
+            >
+          </li>
+          <li>
+            <a
+              href="crew.html"
+              class="ff-sans-cond uppercase text-white letter-spacing-2"
+              ><span aria-hidden="true">02</span>Crew</a
+            >
+          </li>
+          <li>
+            <a
+              href="technology.html"
+              class="ff-sans-cond uppercase text-white letter-spacing-2"
+              ><span aria-hidden="true">03</span>Technology</a
+            >
+          </li>
+        </ul>
+      </nav>
+      <!-- ::after is here -->
     </header>
 
-    <div class="grid-container grid-container--home">
+    <main id="main" class="grid-container grid-container--home">
       <div>
         <h1 class="text-light fs-500 ff-sans-cond uppercase letter-spacing-1">
           So, you want to travel to
@@ -82,6 +93,6 @@
           >Explore</a
         >
       </div>
-    </div>
+    </main>
   </body>
 </html>
