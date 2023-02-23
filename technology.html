@@ -85,13 +85,46 @@
         <span aria-hidden="true">03</span> Space launch 101
       </h1>
 
-      <div class="number-indicators flex">
-        <button class="active bg-white text-dark">1</button>
-        <button class="bg-dark text-white">2</button>
-        <button class="bg-dark text-white">3</button>
+      <div
+        class="number-indicators flex"
+        role="tablist"
+        aria-label="technology list"
+      >
+        <button
+          aria-selected="true"
+          aria-controls="launch-tab"
+          role="tab"
+          data-image="launch-image"
+          tabindex="0"
+        >
+          1
+        </button>
+        <button
+          aria-selected="false"
+          aria-controls="spaceport-tab"
+          role="tab"
+          data-image="spaceport-image"
+          tabindex="-1"
+        >
+          2
+        </button>
+        <button
+          aria-selected="false"
+          aria-controls="capsule-tab"
+          role="tab"
+          data-image="capsule-image"
+          tabindex="-1"
+        >
+          3
+        </button>
       </div>
 
-      <article class="technology-info flow">
+      <article
+        class="technology-info flow"
+        id="launch-tab"
+        role="tabpanel"
+        tabindex="0"
+      >
         <header class="flow flow--space-small">
           <h2 class="fs-600 ff-serif uppercase">The terminology...</h2>
           <p class="fs-700 uppercase ff-serif">Launch vehicle</p>
@@ -105,13 +138,74 @@
         </p>
       </article>
 
-      <picture>
+      <article
+        hidden
+        class="technology-info flow"
+        id="spaceport-tab"
+        role="tabpanel"
+        tabindex="0"
+      >
+        <header class="flow flow--space-small">
+          <h2 class="fs-600 ff-serif uppercase">The terminology...</h2>
+          <p class="fs-700 uppercase ff-serif">Spaceport</p>
+        </header>
+        <p>
+          A spaceport or cosmodrome is a site for launching (or receiving)
+          spacecraft, by analogy to the seaport for ships or airport for
+          aircraft. Based in the famous Cape Canaveral, our spaceport is ideally
+          situated to take advantage of the Earth's rotation for launch.
+        </p>
+      </article>
+
+      <article
+        hidden
+        class="technology-info flow"
+        id="capsule-tab"
+        role="tabpanel"
+        tabindex="0"
+      >
+        <header class="flow flow--space-small">
+          <h2 class="fs-600 ff-serif uppercase">The terminology...</h2>
+          <p class="fs-700 uppercase ff-serif">Space capsule</p>
+        </header>
+        <p>
+          A space capsule is an often-crewed spacecraft that uses a blunt-body
+          reentry capsule to reenter the Earth's atmosphere without wings. Our
+          capsule is where you'll spend your time during the flight. It includes
+          a space gym, cinema, and plenty of other activities to keep you
+          entertained.
+        </p>
+      </article>
+
+      <picture id="launch-image">
         <source
           srcset="./assets/technology/image-launch-vehicle-portrait.jpg"
           media="(min-width: 720px)"
         />
         <img
           src="./assets/technology/image-launch-vehicle-landscape.jpg"
+          alt="a spacecraft launching"
+        />
+      </picture>
+
+      <picture hidden id="spaceport-image">
+        <source
+          srcset="./assets/technology/image-spaceport-portrait.jpg"
+          media="(min-width: 720px)"
+        />
+        <img
+          src="./assets/technology/image-spaceport-landscape.jpg"
+          alt="a spacecraft launching"
+        />
+      </picture>
+
+      <picture hidden id="capsule-image">
+        <source
+          srcset="./assets/technology/image-space-capsule-portrait.jpg"
+          media="(min-width: 720px)"
+        />
+        <img
+          src="./assets/technology/image-space-capsule-landscape.jpg"
           alt="a spacecraft launching"
         />
       </picture>

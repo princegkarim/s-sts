@@ -574,6 +574,8 @@ select {
 }
 
 .number-indicators > button {
+  background-color: hsl(var(--clr-dark));
+  color: hsl(var(--clr-white));
   cursor: pointer;
   outline: 1px solid;
   border: none;
@@ -802,6 +804,11 @@ body {
 
 .grid-container--technology > .technology-info {
   grid-area: content;
+}
+
+.number-indicators > [aria-selected='true'] {
+  background-color: hsl(var(--clr-white) / 1);
+  color: hsl(var(--clr-dark));
 }
 
 /* ====*/
